@@ -5,5 +5,7 @@ exports.getBooks = (req, res) => {
     "publishingYear": "2001",
     "authorId": "1"
   }];
-  res.render('books', { books });
+  if (books.length === 0) {
+    res.render('books', { books, message: 'No books have been found' });
+  } else res.render('books', { books });
 };

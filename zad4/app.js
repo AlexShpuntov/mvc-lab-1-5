@@ -4,14 +4,6 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
-app.delete('*', (req, res, next) => {
-    if (req.query._method === 'DELETE') {
-        req.method = 'DELETE';
-        req.url = req.path;
-    }
-    next();
-});
-
 app.set('view engine', 'ejs');
 
 app.use('/', require('./routes/home'));

@@ -1,9 +1,14 @@
-let books = [{
-  "Id": "1",
-  "title": "Lorem ipsum",
-  "publishingYear": "2001",
-  "authorId": "1"
-}];
+const Book = require('../models/book');
+
+exports.getBooks = (req, res) => {
+  const books = [{
+    "Id": "1",
+    "title": "Lorem ipsum",
+    "publishingYear": "2001",
+    "authorId": "1"
+  }];
+  res.render('books', { books });
+};
 
 exports.addBook = (req, res) => {
   const { title, publishingYear, authorId } = req.body;
@@ -13,9 +18,8 @@ exports.addBook = (req, res) => {
   res.redirect('/book/list');
 };
 
-// Usuwanie książki
 exports.deleteBook = (req, res) => {
-  const { id } = req.params;
+  const id  = req.params.id;
   books = books.filter(book => book.id !== parseInt(id));
   res.redirect('/book/list');
 };

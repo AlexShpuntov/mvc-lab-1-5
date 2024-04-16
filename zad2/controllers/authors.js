@@ -3,5 +3,7 @@ exports.getAuthors = (req, res) => {
     "authorId": "1",
     "authorName": "Dolor Sit Amen"
   }];
-  res.render('authors', { authors });
+  if (authors.length === 0) {
+    res.render('authors', { authors, message: "No authors have been found"});
+  } else res.render('authors', { authors });
 };
